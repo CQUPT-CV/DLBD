@@ -94,7 +94,7 @@ if __name__ == '__main__':
     criterion = UWTXent(t=8, dim=bit, divide_num=2)
     optimizer = torch.optim.Adam(model.parameters(), lr, weight_decay=1e-6)
     best_loss = 10000.0
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=150, gamma=0.1)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=25, gamma=0.9)
     
     transforms_c = transforms.Compose([
         transforms.RandomResizedCrop(32, scale=(0.2, 1)),
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     train_data = CIFAR10SimPair(dataset_path, train=True, download=False, transform=transforms_c)
 
     train_loader = torch.utils.data.DataLoader(train_data,
-                                               batch_size=128,
+                                               batch_size=256,
                                                shuffle=True)
 
     mAPs = []
